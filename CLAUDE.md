@@ -37,19 +37,25 @@ npx prettier --write "src/**/*.{ts,html,scss}"
 
 ## Key Patterns
 
+**Component naming:** Files omit the `.component.ts` suffix (e.g., `login.ts`, `navbar.ts`). Class names still use the `Component` suffix (`LoginComponent`, `NavbarComponent`).
+
 **State management:** Angular Signals only — no NgRx. Services expose `readonly` signals via `signal().asReadonly()` and `computed()`. Component-local state (loading, errors) also uses signals.
 
 **Dependency injection:** Always use `inject()` function, not constructor injection.
 
 **HTTP interceptor:** `src/app/core/auth/interceptors/jwt.interceptor.ts` — functional `HttpInterceptorFn` that attaches `Bearer <token>` to every request and auto-calls `authService.logout()` on 401.
 
-**Auth flow:** Token stored in `localStorage` under key `access_token`. `AuthService` decodes the JWT client-side (base64) to derive `currentUser`, `userRole`, and expiration. Guards (`authGuard`, `guestGuard`) are functional `CanActivateFn`.
+**Auth flow:** Token stored in `localStorage` under key `access_token`. `AuthService` decodes the JWT client-side (base64) to derive `currentUser`, `userRole`, and expiration. `JwtPayload` fields: `sub`, `email`, `role`, `exp`, `iss`, `aud`. Guards (`authGuard`, `guestGuard`) are functional `CanActivateFn`.
 
 **Route protection:**
 - `/orders` and other private routes use `authGuard`
-- `/auth/login`, `/auth/register` use `guestGuard` (redirect authenticated users away)
+- `/auth` parent route uses `guestGuard` (redirects authenticated users away from all auth children)
+
+**Router config:** `withComponentInputBinding()` is enabled — route params and query params can be bound directly to component `@Input()` properties.
 
 **Forms:** Reactive Forms with `inject(FormBuilder)`. Cross-field validators are defined as `ValidatorFn` closures passed to the group.
+
+**API errors:** Backend error responses expose `err.error?.description`. Components fall back to a generic message when this field is absent.
 
 **Styling:** SCSS with component-scoped styles. Global utility classes live in `src/styles.scss` — auth page layout (`.auth-wrapper`, `.auth-card`), form fields (`.form-group`, `.error-hint`, `.alert-error`), buttons (`.btn-primary`, `.btn-outline`). Color palette: primary red `#e94560`, dark `#1a1a2e`, light bg `#f5f5f5`.
 
