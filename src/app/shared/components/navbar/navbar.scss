@@ -1,0 +1,41 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 60px;
+  background: #1a1a2e;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+  &-brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #e94560;
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+
+  &-links {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+
+    a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+
+      &:hover,
+      &.active {
+        color: #fff;
+      }
+    }
+  }
+
+  &-user {
+    font-size: 0.85rem;
+    color: #aaa;
+  }
+}

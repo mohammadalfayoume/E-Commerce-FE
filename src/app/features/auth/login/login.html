@@ -1,0 +1,60 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>Welcome back</h1>
+      <p>Sign in to your account</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+      @if (errorMessage()) {
+        <div class="alert alert-error">{{ errorMessage() }}</div>
+      }
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          [class.is-invalid]="email.invalid && email.touched"
+        />
+        @if (email.invalid && email.touched) {
+          <span class="error-hint">
+            @if (email.hasError('required')) { Email is required. }
+            @else if (email.hasError('email')) { Enter a valid email address. }
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="••••••••"
+          autocomplete="current-password"
+          [class.is-invalid]="password.invalid && password.touched"
+        />
+        @if (password.invalid && password.touched) {
+          <span class="error-hint">
+            @if (password.hasError('required')) { Password is required. }
+            @else if (password.hasError('minlength')) { Minimum 6 characters. }
+          </span>
+        }
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="isLoading()">
+        @if (isLoading()) { Signing in… } @else { Sign in }
+      </button>
+
+    </form>
+
+    <p class="auth-footer">
+      Don't have an account? <a routerLink="/auth/register">Create one</a>
+    </p>
+  </div>
+</div>

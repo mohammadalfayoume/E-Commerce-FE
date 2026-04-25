@@ -1,0 +1,12 @@
+<section class="hero">
+  <h1>Welcome to ShopApp</h1>
+  @if (authService.isAuthenticated()) {
+    <p>Hello, <strong>{{ authService.currentUser()?.email }}</strong>!</p>
+  }
+  <div class="hero-actions">
+    <a routerLink="/products" class="btn-primary">Browse Products</a>
+    @if (!authService.isAuthenticated()) {
+      <a routerLink="/auth/register" class="btn-outline">Get started</a>
+    }
+  </div>
+</section>
