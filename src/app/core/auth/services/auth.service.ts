@@ -36,7 +36,12 @@ export class AuthService {
     return this.decodeToken(token);
   });
 
-  readonly userRole = computed(() => this.currentUser()?.role ?? null);
+  readonly userRole = computed(
+    () =>
+      this.currentUser()?.[
+        'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+      ] ?? null
+  );
 
   login(request: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, request).pipe(
