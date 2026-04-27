@@ -6,6 +6,9 @@
 
     @if (authService.isAuthenticated()) {
       <a routerLink="/orders" routerLinkActive="active">My Orders</a>
+      @if (authService.userRole() === 'Admin') {
+        <a routerLink="/transactions" routerLinkActive="active">Transactions</a>
+      }
       <span class="navbar-user">{{ authService.currentUser()?.email }}</span>
       <button class="btn-outline" (click)="authService.logout()">Sign out</button>
     } @else {

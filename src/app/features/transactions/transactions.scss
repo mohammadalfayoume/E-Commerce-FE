@@ -1,0 +1,79 @@
+.transactions-page {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 1.5rem;
+}
+
+.status-text {
+  color: #666;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+
+  th,
+  td {
+    padding: 0.875rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+
+  th {
+    background: #1a1a2e;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr:hover {
+    background: #f9f9f9;
+  }
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #eee;
+  color: #333;
+
+  &--credit {
+    background: #e6f4ea;
+    color: #2e7d32;
+  }
+
+  &--debit {
+    background: #fdecea;
+    color: #c62828;
+  }
+
+  &--refund {
+    background: #e8f0fe;
+    color: #1a56db;
+  }
+}

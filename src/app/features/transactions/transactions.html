@@ -1,0 +1,36 @@
+<div class="transactions-page">
+  <h1 class="page-title">My Transactions</h1>
+
+  @if (isLoading()) {
+    <p class="status-text">Loading transactions...</p>
+  } @else if (errorMessage()) {
+    <p class="alert-error">{{ errorMessage() }}</p>
+  } @else if (transactions().length === 0) {
+    <p class="status-text">No transactions found.</p>
+  } @else {
+    <div class="table-wrapper">
+      <table class="transactions-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (tx of transactions(); track tx.id) {
+            <tr>
+              <td>
+                <span class="badge" [class]="'badge--' + tx.transactionType.toLowerCase()">
+                  {{ tx.transactionType }}
+                </span>
+              </td>
+              <td>{{ tx.description }}</td>
+              <td>{{ tx.createdAt | utcDate }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
