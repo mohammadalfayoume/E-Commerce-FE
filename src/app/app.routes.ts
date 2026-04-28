@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { adminGuard } from './core/auth/guards/admin.guard';
 import { authGuard } from './core/auth/guards/auth.guard';
 import { guestGuard } from './core/auth/guards/guest.guard';
 
@@ -35,6 +36,12 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('./features/orders/orders').then((m) => m.OrdersComponent),
+  },
+  {
+    path: 'transactions',
+    canActivate: [adminGuard],
+    loadComponent: () =>
+      import('./features/transactions/transactions').then((m) => m.TransactionsComponent),
   },
   { path: '**', redirectTo: '' },
 ];
