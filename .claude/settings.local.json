@@ -5,7 +5,10 @@
       "Bash(curl -s -k -o /dev/null -w \"%{http_code}\" https://localhost:44302/api/auth/login -X POST -H \"Content-Type: application/json\" -d '{\"email\":\"test@test.com\",\"password\":\"wrongpass\"}')",
       "Bash(npm test *)",
       "Bash(curl *)",
-      "Bash(npx playwright *)"
+      "Bash(npx playwright *)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_type",
+      "mcp__playwright__browser_take_screenshot"
     ]
   }
 }
