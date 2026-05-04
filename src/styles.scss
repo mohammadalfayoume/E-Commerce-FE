@@ -37,6 +37,11 @@ body {
     opacity: 0.6;
     cursor: not-allowed;
   }
+
+  &:focus-visible {
+    outline: 2px solid #e94560;
+    outline-offset: 2px;
+  }
 }
 
 .btn-outline {
@@ -53,6 +58,20 @@ body {
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #e94560;
+    outline-offset: 2px;
+  }
+}
+
+.btn-outline--dark {
+  color: #1a1a2e;
+  border-color: #ddd;
+
+  &:hover {
+    background: rgba(26, 26, 46, 0.06);
   }
 }
 
