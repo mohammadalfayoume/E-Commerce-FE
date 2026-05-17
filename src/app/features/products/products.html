@@ -1,0 +1,22 @@
+<section class="products-page">
+  <h2 class="page-title">Products</h2>
+
+  <div class="products-grid">
+    @for (product of products(); track product.id) {
+      <article class="product-card">
+        <div class="product-card__image">
+          <img [src]="product.image" [alt]="product.name" loading="lazy" />
+        </div>
+        <div class="product-card__body">
+          <span class="product-card__category">{{ product.category }}</span>
+          <h3 class="product-card__name">{{ product.name }}</h3>
+          <div class="product-card__meta">
+            <span class="product-card__rating">★ {{ product.rating }}</span>
+            <span class="product-card__price">{{ product.price | currency }}</span>
+          </div>
+          <button type="button" class="btn-primary product-card__action">Add to cart</button>
+        </div>
+      </article>
+    }
+  </div>
+</section>
